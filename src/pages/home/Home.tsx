@@ -1,6 +1,4 @@
 import { ProductCard } from "@/components/PhoneCard";
-import { mobileData } from "@/data/mobile";
-import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
@@ -10,8 +8,8 @@ const Home = () => {
     <main className="relative">
       <section className="flex justify-center px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <img
-          className="h-[445.81px] relative"
-          src="https://via.placeholder.com/1286x446"
+          className="h-[445.81px] relative w-full"
+          src="/images/Google-Pixel-9-Pro.webp"
         />
       </section>
 

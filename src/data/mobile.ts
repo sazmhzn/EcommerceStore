@@ -23,22 +23,22 @@ export const mobileData = [
   {
     id: 4,
     name: "OnePlus 11",
-    price: "Rs. 61,999",
-    src: "/images/oneplus-11.jpg",
+    price: "61,999",
+    src: "/images/11-green.png",
     stock: 40,
   },
   {
     id: 5,
     name: "Xiaomi 12 Pro",
-    price: "Rs. 64,999",
-    src: "/images/xiaomi-12-pro.jpg",
+    price: "64,999",
+    src: "/images/xiaomi-12-pro.png",
     stock: 25,
   },
   {
     id: 6,
     name: "Sony Xperia 1 IV",
-    price: "Rs. 134,999",
-    src: "/images/sony-xperia-1-iv.jpg",
+    price: "134,999",
+    src: "/images/sony-xperia-1-iv.png",
     stock: 15,
   },
 ];
