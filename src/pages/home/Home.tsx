@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
-  const { addToCart } = useOutletContext();
+  const { addToCart, products, removeFromCart } = useOutletContext();
 
   return (
     <main className="relative">
@@ -18,13 +18,15 @@ const Home = () => {
       <section>
         <div className="py-8 min-h-screen px-8 mx-autopx-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 justify-center">
-            {mobileData.map((product) => (
+            {products.map((product) => (
               <ProductCard
                 key={product.id}
+                id={product.id}
                 name={product.name}
                 image={product.src}
                 price={product.price}
-                onAddToCart={() => addToCart(product)}
+                onAddToCart={() => addToCart(product.id)}
+                stock={product.stock}
               />
             ))}
           </div>

@@ -4,18 +4,21 @@ export const mobileData = [
     name: "iphone",
     price: "2,32,000",
     src: "/images/apple-iphone-16.jpg",
+    stock: 25,
   },
   {
     id: 2,
     name: "Honor 200",
     price: "2,00,000",
     src: "/images/honor-200-cyan-list.png",
+    stock: 25,
   },
   {
     id: 3,
     name: "OnePlus 12",
     price: "1,90,000",
     src: "/images/Oneplus-12.png",
+    stock: 25,
   },
   {
     id: 4,

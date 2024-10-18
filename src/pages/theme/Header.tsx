@@ -9,14 +9,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import { mobileData } from "@/data/mobile";
 
-const Header = ({ cartItems, setCartItems }) => {
+const Header = ({
+  cartItems,
+  setCartItems,
+  removeFromCart,
+  products,
+  setProducts,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const handleSearchChange = (e) => {
@@ -37,10 +42,29 @@ const Header = ({ cartItems, setCartItems }) => {
     );
   }, 0);
 
-  const handleDelete = (id) => {
-    setCartItems((prevCartItems) =>
-      prevCartItems.filter((item) => item.id !== id)
-    );
+  // const handleDelete = (id) => {
+  //   setCartItems((prevCartItems) =>
+  //     prevCartItems.filter((item) => item.id !== id)
+  //   );
+  // };
+
+  const updateStock = () => {
+    if (cartItems.length > 0) {
+      // Check if there are items to order
+      setProducts((prevProducts) =>
+        prevProducts.map((product) => {
+          const cartItem = cartItems.find((item) => item.id === product.id);
+          if (cartItem) {
+            // Decrease stock by the quantity in the cart
+            return { ...product, stock: product.stock - cartItem.quantity };
+          }
+          return product;
+        })
+      );
+      // Clear the cart after placing the order
+      setCartItems([]);
+      alert("Order placed successfully!"); // Optional: Notify the user
+    }
   };
 
   return (
@@ -75,7 +99,7 @@ const Header = ({ cartItems, setCartItems }) => {
           </div>
 
           {isSearchOpen && (
-            <div className="absolute bg-white border rounded shadow-lg mt-1 w-1/2 z-50">
+            <div className="absolute grid transition-all bg-white border rounded shadow-lg mt-1 w-1/2 z-50">
               {filteredResults.length > 0 ? (
                 filteredResults.map((item) => (
                   <Link
@@ -145,7 +169,7 @@ const Header = ({ cartItems, setCartItems }) => {
 
                               <span
                                 className="bg-red-500 rounded-full p-1"
-                                onClick={() => handleDelete(item.id)}
+                                onClick={() => removeFromCart(item.id)}
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +208,10 @@ const Header = ({ cartItems, setCartItems }) => {
                   </div>
                   <Separator className="h bg-neutral-400" />
                   <div className="w-full inline-flex gap-4">
-                    <Button className="w-full bg-[#0163d2] rounded-none text-white p-5">
+                    <Button
+                      className="w-full bg-[#0163d2] rounded-none text-white p-5"
+                      onClick={updateStock} // Update stock when placing an order
+                    >
                       Place Order
                     </Button>
                     <Button className="w-full bg-[#0163d2] rounded-none text-white p-5">
