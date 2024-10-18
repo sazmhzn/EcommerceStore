@@ -9,10 +9,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import { mobileData } from "@/data/mobile";
+import AlertCustom from "@/components/AlertCustom";
 
 const Header = ({
   cartItems,
@@ -63,7 +67,7 @@ const Header = ({
       );
       // Clear the cart after placing the order
       setCartItems([]);
-      alert("Order placed successfully!"); // Optional: Notify the user
+      toast.success("Order placed successfully!");
     }
   };
 

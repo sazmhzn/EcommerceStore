@@ -2,10 +2,12 @@ import { mobileData } from "@/data/mobile";
 import Header from "@/pages/theme/Header";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const Layout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState(mobileData);
+  const [alertMessage, setAlertMessage] = useState("");
 
   // const addToCart = (product) => {
 
@@ -74,6 +76,7 @@ const Layout = () => {
         setProducts={setProducts}
       />
       <Outlet context={{ addToCart, products, removeFromCart }} />
+      <ToastContainer />
     </div>
   );
 };
